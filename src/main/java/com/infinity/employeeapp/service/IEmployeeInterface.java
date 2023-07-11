@@ -9,4 +9,5 @@ public interface IEmployeeInterface {
 	
 	public String addemployee(EmployeeModel employeeModel);
 	public List<EmployeeEntity> getallemployee();
+	public EmployeeEntity getemployeebyid(int eid);
 }

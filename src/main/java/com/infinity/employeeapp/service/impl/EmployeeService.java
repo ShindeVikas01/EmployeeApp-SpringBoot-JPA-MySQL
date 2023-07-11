@@ -32,5 +32,10 @@ public class EmployeeService implements IEmployeeInterface {
 		// TODO Auto-generated method stub
 		return emprepo.findAll();
 	}
+	@Override
+	public EmployeeEntity getemployeebyid(int eid) {
+		// TODO Auto-generated method stub
+		return emprepo.getEmployeeEmployeeEntityByEid(eid);
+	}
 
 }
