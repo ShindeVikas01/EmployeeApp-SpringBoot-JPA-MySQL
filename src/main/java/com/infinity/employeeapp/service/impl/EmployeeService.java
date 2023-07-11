@@ -1,5 +1,7 @@
 package com.infinity.employeeapp.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class EmployeeService implements IEmployeeInterface {
 		employeeEntity.setAge(employeeModel.getAge());
 		emprepo.save(employeeEntity);
 		return "Data Added Successfully";
+	}
+	@Override
+	public List<EmployeeEntity> getallemployee() {
+		// TODO Auto-generated method stub
+		return emprepo.findAll();
 	}
 
 }
