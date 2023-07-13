@@ -9,12 +9,15 @@ import com.infinity.employeeapp.entity.EmployeeEntity;
 import com.infinity.employeeapp.model.EmployeeModel;
 import com.infinity.employeeapp.repo.EmployeeRepo;
 import com.infinity.employeeapp.service.IEmployeeInterface;
+import com.infinity.employeeapp.util.JMSUtil;
 
 @Service
 public class EmployeeService implements IEmployeeInterface {
 
 	@Autowired
 	EmployeeRepo emprepo;
+	@Autowired 
+	JMSUtil jmsUtil;
 	@Override
 	public String addemployee(EmployeeModel employeeModel) {
 		EmployeeEntity employeeEntity= new EmployeeEntity();
@@ -24,7 +27,11 @@ public class EmployeeService implements IEmployeeInterface {
 		employeeEntity.setSalary(employeeModel.getSalary());
 		employeeEntity.setDoj(employeeModel.getDoj());
 		employeeEntity.setAge(employeeModel.getAge());
+		employeeEntity.setEmail(employeeModel.getEmail());
 		emprepo.save(employeeEntity);
+		
+		jmsUtil.sendMail(employeeModel.getEmail(), "Register Conformation", "Welcome to employee application using SpringBoot");
+		
 		return "Data Added Successfully";
 	}
 	@Override
